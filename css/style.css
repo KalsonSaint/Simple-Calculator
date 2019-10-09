@@ -34,6 +34,41 @@ body{
     height: 60px;
     margin: 10px 20px;
     font-size: 30px;
+}#output-text{
+    width: 250px;
+    height: 120px;
+    float: left;
+}
+#mic{
+    height: 30px;
+    width: 30px;
+    float: right;
+    background-image: url('../play.png');
+    background-size: 100% 100%;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    margin: 20px;
+    margin-top: 45px;
+}
+.record{
+    animation: mic-anim 1.5s infinite;    
+}
+@keyframes mic-anim{
+    0%{
+        transform: scale(0.9);
+    }
+    70%{
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(240, 106, 189, 0.523);
+    }
+    100%{
+        transform: scale(.9);
+        box-shadow: 0 0 0 0 rgba(0, 148, 255, 0);
+    }
+}
+.tooltip{
+    visibility: hidden;
 }
 #keyboard{
     height: 400px;
