@@ -72,11 +72,38 @@ number.forEach(e => {
 });
 let mic = document.querySelector("#mic");
 mic.onclick = () => {
+    mic.classList.add("record");
     let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
     recognition.lang = 'en-US';
     recognition.start();
+    let operators = {
+      "plus": "+",
+      "minus": "-",
+      "multiply": "*",
+      "multiplied": "*",
+      "divide": "/",
+      "divided": "/",
+      "remainder": "%"
+    }
     recognition.onresult = e => {
         let input = e.results[0][0].transcript;
-        console.log(input);
+        for (const key in operators) {
+          input = input.replace(property, operators[property]);
+        }
+        document.querySelector('#output-value').innerText = input
+        setTimeout(()=>{
+          evaluate(input);
+        }, 2000);
+        mic.classList.remove("record");
     }
 };
+
+const evaluate = input => {
+  try {
+    let result = eval(input);
+    document.querySelector('#output-value').innerText = result;
+  } catch (e) {
+    console.log(e);
+    document.querySelector('#output-value').innerText = "";
+  }
+}
